@@ -1,10 +1,17 @@
-export const MainLogo = () => (
-  <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
-    <path
-      clipRule="evenodd"
-      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-      fill="currentColor"
-      fillRule="evenodd"
-    />
-  </svg>
+export const MainLogo = (props) => (
+	<svg
+		viewBox="0 0 21 21"
+		fill="currentColor"
+		height="36"
+		width="36"
+		{...props}
+	>
+		<path
+			fill="none"
+			stroke="currentColor"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			d="M5.5 7.5h10a2 2 0 012 2v5a2 2 0 01-2 2h-10a2 2 0 01-2-2v-5a2 2 0 012-2zm4-3h2a2 2 0 012 2v1h-6v-1a2 2 0 012-2z"
+		/>
+	</svg>
 );

@@ -20,8 +20,7 @@ import PostJob from "./components/jobs/PostJob.jsx";
 import MyJobs from "./components/jobs/MyJobs.jsx";
 function App() {
 	const { isAuthorized, setIsAuthorized, setUser } = useContext(DataContext);
-	console.log(isAuthorized);
-
+	console.log("Authorized?:", isAuthorized);
 	useEffect(() => {
 		const fetchUser = async () => {
 			try {
@@ -41,7 +40,7 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<div className="flex flex-col bg-stone-50">
+			<div className="flex flex-col bg-[#FAF9FA]">
 				<NavTop />
 
 				<div className="flex min-h-dvh flex-col flex-grow container max-w-6xl mx-auto py-20 px-5">

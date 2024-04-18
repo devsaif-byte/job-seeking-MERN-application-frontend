@@ -6,8 +6,6 @@ import {
 	NavbarMenuToggle,
 	NavbarMenu,
 	NavbarMenuItem,
-	// Link,
-	Button,
 } from "@nextui-org/react";
 import { MainLogo } from "../common/Logo.jsx";
 import { useState } from "react";
@@ -16,14 +14,15 @@ import { DataContext } from "../../contexts/DataContext.jsx";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import Btn from "../common/Button.jsx";
+import { useEffect } from "react";
 
 function NavTop() {
 	const { isAuthorized, setIsAuthorized, user } = useContext(DataContext);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [active, setActive] = useState(false);
-	const navigate = useNavigate();
 	const menuItems = ["Home", "All Jobs", "My Applications", "Log Out"];
-	const urlRefs = ["/", "/job/all", "/applications-me"];
+	const navigate = useNavigate();
 
 	const handleLogout = async () => {
 		try {
@@ -33,6 +32,7 @@ function NavTop() {
 			);
 			const data = await response.data;
 			toast.success(data.message);
+
 			setIsAuthorized(false);
 			navigate("/login");
 		} catch (error) {
@@ -41,12 +41,16 @@ function NavTop() {
 		}
 	};
 
-	// if (!isAuthorized) return <Navigate to="/login" />;
+	useEffect(() => {
+		if (!isAuthorized) return navigate("/login");
+	}, [isAuthorized]);
+
 	return (
 		<Navbar
 			shouldHideOnScroll
 			maxWidth="xl"
 			className={`${isAuthorized ? `` : `hidden`}`}
+			isBordered="true"
 		>
 			<NavbarContent>
 				<NavbarMenuToggle
@@ -55,16 +59,19 @@ function NavTop() {
 				/>
 				<NavbarBrand>
 					<MainLogo />
-					<p className="font-bold text-inherit text-green-500">JobBucket</p>
+					<p className="font-bold ml-2 text-2xl text-indigo-500">JobBucket</p>
 				</NavbarBrand>
 			</NavbarContent>
-			<NavbarContent className="hidden sm:flex gap-4" justify="center">
+			<NavbarContent
+				className="hidden sm:flex gap-4 font-semibold"
+				justify="center"
+			>
 				<NavbarItem>
 					<Link color="foreground" to="/">
 						Home
 					</Link>
 				</NavbarItem>
-				<NavbarItem isActive>
+				<NavbarItem>
 					<Link to="/job/all">All Jobs</Link>
 				</NavbarItem>
 				<NavbarItem>
@@ -89,17 +96,7 @@ function NavTop() {
 			</NavbarContent>
 			<NavbarContent justify="end">
 				<NavbarItem>
-					<Button
-						as={Link}
-						radius="full"
-						color="success"
-						to="#"
-						variant="shadow"
-						className="text-white"
-						onClick={handleLogout}
-					>
-						Logout
-					</Button>
+					<Btn to="" onClick={handleLogout} text="Logout" />
 				</NavbarItem>
 			</NavbarContent>
 			<NavbarMenu>

@@ -11,6 +11,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { DataContext } from "../../contexts/DataContext";
 import { useContext } from "react";
 import axios from "axios";
+import Btn from "../common/Button";
 
 function JobDetails() {
 	const [job, setJob] = useState({});
@@ -64,7 +65,8 @@ function JobDetails() {
 						Description: <span>{job.description}</span>
 					</p>
 					<p>
-						Job Posted On: <span>{job.jobPostedOn}</span>
+						Job Posted On:{" "}
+						<span>{new Date(job.jobPostedOn).toLocaleString()}</span>
 					</p>
 					<p>
 						Salary:{" "}
@@ -81,16 +83,11 @@ function JobDetails() {
 					{user && user.role === "Employer" ? (
 						<></>
 					) : (
-						<Button
+						<Btn
 							to={`/application/${job._id}`}
-							radius="full"
-							variant="shadow"
-							color="danger"
-							as={Link}
-						>
-							{" "}
-							Apply this Job
-						</Button>
+							size="sm"
+							text="Apply this Job"
+						/>
 					)}
 				</CardFooter>
 			</Card>

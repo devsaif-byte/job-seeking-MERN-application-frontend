@@ -86,7 +86,6 @@ function MyJobs() {
 			</h1>
 			{jobs && jobs.length > 0 ? (
 				jobs.map((el) => {
-					console.log(editingMode, el._id);
 					return (
 						<>
 							<div key={el._id} className="my-3">
@@ -106,7 +105,6 @@ function MyJobs() {
 												<span>
 													<i>Category: </i>
 													<Select
-														className="bg-transparent"
 														isDisabled={editingMode !== el._id ? true : false}
 														value={el.category}
 														placeholder={el.category}
@@ -183,7 +181,6 @@ function MyJobs() {
 												<span>
 													<i>Country: </i>
 													<Input
-														className="bg-transparent"
 														isDisabled={editingMode !== el._id ? true : false}
 														value={el.country}
 														onChange={(e) =>
@@ -195,7 +192,6 @@ function MyJobs() {
 												<span>
 													<i>City: </i>
 													<Input
-														className="bg-transparent"
 														isDisabled={editingMode !== el._id ? true : false}
 														value={el.city}
 														onChange={(e) =>
@@ -210,7 +206,6 @@ function MyJobs() {
 														<i>Salary: </i>
 														<Input
 															placeholder="Fixed Salary"
-															className="bg-transparent"
 															isDisabled={editingMode !== el._id ? true : false}
 															value={el.fixedSalary}
 															onChange={(e) =>
@@ -228,7 +223,6 @@ function MyJobs() {
 														<i>Salary: </i>{" "}
 														<Input
 															placeholder="From"
-															className="bg-transparent"
 															isDisabled={editingMode !== el._id ? true : false}
 															value={el.salaryFrom}
 															onChange={(e) =>
@@ -242,7 +236,6 @@ function MyJobs() {
 														/>
 														<Input
 															placeholder="To"
-															className="bg-transparent"
 															isDisabled={editingMode !== el._id ? true : false}
 															value={el.salaryTo}
 															onChange={(e) =>
@@ -254,25 +247,34 @@ function MyJobs() {
 												)}
 												<span>
 													<i>Expired: </i>
+
 													<Select
+														label="Selecting true will be hide the job from listing"
 														radius="none"
-														className="bg-transparent"
 														isDisabled={editingMode !== el._id ? true : false}
 														placeholder={el.expired}
+														value={el.expired}
+														onChange={(e) =>
+															handleInput(
+																el._id,
+																"expired",
+																e.target.value === "true"
+															)
+														}
 													>
 														<SelectItem
 															className="text-neutral-600"
-															key="True"
-															value={false}
+															key={true}
+															value={true}
 														>
-															True
+															true
 														</SelectItem>
 														<SelectItem
 															className="text-neutral-600"
-															key="False"
+															key={false}
 															value={false}
 														>
-															False
+															false
 														</SelectItem>
 													</Select>
 												</span>
@@ -283,7 +285,6 @@ function MyJobs() {
 													<i>Description: </i>
 													<Textarea
 														rows="5"
-														className="bg-transparent"
 														isDisabled={editingMode !== el._id ? true : false}
 														value={el.description}
 														onChange={(e) =>
@@ -295,7 +296,6 @@ function MyJobs() {
 												<span>
 													<i>Location: </i>
 													<Textarea
-														className="bg-transparent"
 														isDisabled={editingMode !== el._id ? true : false}
 														value={el.location}
 														onChange={(e) =>
@@ -315,7 +315,7 @@ function MyJobs() {
 																color="danger"
 																radius="full"
 																isIconOnly
-																size="sm"
+																size="md"
 																aria-label="Delete this Job post"
 															>
 																<MdClose />
@@ -327,7 +327,7 @@ function MyJobs() {
 																color="success"
 																radius="full"
 																isIconOnly
-																size="sm"
+																size="md"
 																aria-label="Update this Job post"
 															>
 																<MdCheck />
@@ -341,17 +341,20 @@ function MyJobs() {
 																color="warning"
 																radius="full"
 																className="m-1"
-																size="sm"
+																size="md"
 															>
 																Edit
 															</Button>
 															<Button
-																onClick={() => handleDelete(el._id)}
+																onClick={() => {
+																	if (confirm("Are you sure?"))
+																		handleDelete(el._id);
+																}}
 																variant="shadow"
 																color="danger"
 																radius="full"
 																className="m-1"
-																size="sm"
+																size="md"
 															>
 																Delete
 															</Button>

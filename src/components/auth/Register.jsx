@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MainLogo } from "../common/Logo";
+import Btn from "../common/Button";
 function Register() {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -55,7 +56,9 @@ function Register() {
 		>
 			<CardHeader>
 				<MainLogo />
-				<h3>Register Your Account</h3>
+				<h3 className="font-semibold ml-2 text-indigo-500">
+					Register Your Account
+				</h3>
 			</CardHeader>
 			<CardBody>
 				<form
@@ -70,49 +73,54 @@ function Register() {
 						selectedKeys={[role]}
 						onChange={(e) => setRole(e.target.value)}
 					>
-						<SelectItem key="Job Seeker" value="job seeker">
+						<SelectItem
+							className="text-neutral-600"
+							key="Job Seeker"
+							value="job seeker"
+						>
 							Job Seeker
 						</SelectItem>
-						<SelectItem key="Employer" value="employer">
+						<SelectItem
+							className="text-neutral-600"
+							key="Employer"
+							value="employer"
+						>
 							Employer
 						</SelectItem>
 					</Select>
-					<p className="text-small text-default-500">Selected: {role}</p>
+					<p className="text-small text-yellow-600 ml-3">Selected: {role}</p>
 					<Input
 						type="text"
 						label="Name"
 						radius="full"
+						autoComplete="username"
 						onChange={(e) => setName(e.target.value)}
 					/>
 					<Input
 						type="email"
 						label="Email"
+						autoComplete=""
 						radius="full"
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 					<Input
 						type="password"
 						label="Password"
+						autoComplete="current-password"
 						radius="full"
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<Input
 						type="phone"
 						label="Phone"
+						autoComplete=""
 						radius="full"
 						onChange={(e) => setPhone(e.target.value)}
 					/>
 				</form>
 			</CardBody>
 			<CardFooter className="flex gap-3">
-				<Button
-					radius="full"
-					variant="shadow"
-					color="danger"
-					onClick={handleRegister}
-				>
-					Register
-				</Button>
+				<Btn text="Register" onClick={handleRegister} />
 
 				<Link to="/login" className="underline decoration-solid">
 					Login Here

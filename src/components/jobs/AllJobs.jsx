@@ -50,7 +50,6 @@ function AllJobs() {
 					{ withCredentials: true }
 				);
 				const data = await response.data;
-				console.log(data);
 				setJobs(data.jobs);
 			};
 			getJobs();
@@ -59,41 +58,46 @@ function AllJobs() {
 		}
 	}, []);
 
-	// if (!isAuthorized) navigate("/");
+	if (!isAuthorized) navigate("/");
 
 	return (
 		<section>
-			<h1 className="text-3xl font-bold uppercase mt-6">All Available Jobs</h1>
+			<h1 className="font-bold text-3xl mb-5 tracking-widest">
+				All Available Jobs
+			</h1>
 			<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 py-20 px-3">
-				{jobs?.map((job) => {
-					return (
-						<Card
-							key={job._id}
-							className="hover:shadow-md border hover:border-none"
-							shadow="none"
-						>
-							<CardHeader className={`${jobColors[job._id]} text-white`}>
-								<b>{job.title}</b>
-							</CardHeader>
-							<CardBody>
-								<p>Category: {job.category}</p>
-								<p>Country: {job.country}</p>
-								<p>Location: {job.location}</p>
-							</CardBody>
-							<CardFooter>
-								<Button
-									as={Link}
-									to={`/job/${job._id}`}
-									radius="full"
-									variant="shadow"
-									size="sm"
+				{jobs &&
+					jobs?.map((job) => {
+						return (
+							!job.expired && (
+								<Card
+									key={job._id}
+									className="hover:shadow-md border hover:border-none"
+									shadow="none"
 								>
-									See Details
-								</Button>
-							</CardFooter>
-						</Card>
-					);
-				})}
+									<CardHeader className={`${jobColors[job._id]} text-white`}>
+										<b>{job.title}</b>
+									</CardHeader>
+									<CardBody>
+										<p>Category: {job.category}</p>
+										<p>Country: {job.country}</p>
+										<p>Location: {job.location}</p>
+									</CardBody>
+									<CardFooter>
+										<Button
+											as={Link}
+											to={`/job/${job._id}`}
+											radius="full"
+											variant="shadow"
+											size="sm"
+										>
+											See Details
+										</Button>
+									</CardFooter>
+								</Card>
+							)
+						);
+					})}
 			</div>
 		</section>
 	);

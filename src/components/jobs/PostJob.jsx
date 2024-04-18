@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { DataContext } from "../../contexts/DataContext";
 import { Link } from "react-router-dom";
+import Btn from "../common/Button";
 
 function PostJob() {
 	const [title, setTitle] = useState("");
@@ -31,6 +32,7 @@ function PostJob() {
 	const [salaryType, setSalaryType] = useState("default");
 	const { isAuthorized, user } = useContext(DataContext);
 
+	const navigate = useNavigate();
 	const handleJobPost = async (e) => {
 		e.preventDefault();
 		try {
@@ -68,6 +70,8 @@ function PostJob() {
 				}
 			);
 			const data = response.data;
+			console.log(response);
+			if (response.statusText === "OK") navigate("/job/all");
 			toast.success(data.message);
 		} catch (error) {
 			toast.error(error.response.data.message);
@@ -252,15 +256,7 @@ function PostJob() {
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					/>
-					<Button
-						radius="full"
-						variant="shadow"
-						color="warning"
-						fullWidth
-						onClick={handleJobPost}
-					>
-						Create Job
-					</Button>
+					<Btn fullWidth onClick={handleJobPost} text="Create Job" />
 				</form>
 			</CardBody>
 			<CardFooter className="flex gap-3"></CardFooter>
