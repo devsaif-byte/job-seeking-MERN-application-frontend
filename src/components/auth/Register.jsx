@@ -29,7 +29,7 @@ function Register() {
 		e.preventDefault();
 		try {
 			const { data } = await axios.post(
-				"http://localhost:5000/api/v1/user/register",
+				"https://job-bucket-server.onrender.com/api/v1/user/register",
 				{ name, email, phone, password, role },
 				{
 					headers: { "Content-Type": "application/json" },

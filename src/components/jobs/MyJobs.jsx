@@ -29,7 +29,7 @@ function MyJobs() {
 		const getMyJobs = async () => {
 			try {
 				const response = await axios.get(
-					"http://localhost:5000/api/v1/job/my-jobs",
+					"https://job-bucket-server.onrender.com/api/v1/job/my-jobs",
 					{ withCredentials: true }
 				);
 				const data = await response.data;
@@ -53,17 +53,24 @@ function MyJobs() {
 	const handleUpdate = async (id) => {
 		const filterJob = jobs.find((job) => job._id === id);
 		await axios
-			.put(`http://localhost:5000/api/v1/job/update/${id}`, filterJob, {
-				withCredentials: true,
-			})
+			.put(
+				`https://job-bucket-server.onrender.com/api/v1/job/update/${id}`,
+				filterJob,
+				{
+					withCredentials: true,
+				}
+			)
 			.then((res) => toast.success(res.data.message))
 			.catch((err) => toast.error(err.response.data.message));
 	};
 	const handleDelete = async (id) => {
 		await axios
-			.delete(`http://localhost:5000/api/v1/job/delete/${id}`, {
-				withCredentials: true,
-			})
+			.delete(
+				`https://job-bucket-server.onrender.com/api/v1/job/delete/${id}`,
+				{
+					withCredentials: true,
+				}
+			)
 			.then((res) => {
 				toast.success(res.data.message);
 				setJobs((prevJobs) => prevJobs.filter((job) => job._id !== id));

@@ -22,7 +22,7 @@ function JobDetails() {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:5000/api/v1/job/${id}`, {
+			.get(`https://job-bucket-server.onrender.com/api/v1/job/${id}`, {
 				withCredentials: true,
 			})
 			.then((res) => {

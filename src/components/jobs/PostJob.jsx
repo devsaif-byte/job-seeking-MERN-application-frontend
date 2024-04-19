@@ -37,7 +37,7 @@ function PostJob() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				"http://localhost:5000/api/v1/job/post",
+				"https://job-bucket-server.onrender.com/api/v1/job/post",
 				fixedSalary.length >= 4
 					? {
 							title,

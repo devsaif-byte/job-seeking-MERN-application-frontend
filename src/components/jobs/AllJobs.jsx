@@ -46,7 +46,7 @@ function AllJobs() {
 		try {
 			const getJobs = async () => {
 				const response = await axios.get(
-					"http://localhost:5000/api/v1/job/all-jobs",
+					"https://job-bucket-server.onrender.com/api/v1/job/all-jobs",
 					{ withCredentials: true }
 				);
 				const data = await response.data;

@@ -27,7 +27,7 @@ function NavTop() {
 	const handleLogout = async () => {
 		try {
 			const response = await axios.get(
-				"http://localhost:5000/api/v1/user/logout",
+				"https://job-bucket-server.onrender.com/api/v1/user/logout",
 				{ withCredentials: true }
 			);
 			const data = await response.data;

@@ -28,7 +28,7 @@ function Login() {
 		e.preventDefault();
 		try {
 			const { data } = await axios.post(
-				"http://localhost:5000/api/v1/user/login",
+				"https://job-bucket-server.onrender.com/api/v1/user/login",
 				{ email, password, role },
 				{
 					headers: { "Content-Type": "application/json" },
