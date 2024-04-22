@@ -3,7 +3,6 @@ import {
 	CardHeader,
 	CardBody,
 	CardFooter,
-	Button,
 	Divider,
 } from "@nextui-org/react";
 import { useState, useEffect } from "react";
@@ -26,7 +25,6 @@ function JobDetails() {
 				withCredentials: true,
 			})
 			.then((res) => {
-				console.log(res.data);
 				setJob(res.data.job);
 			})
 			.catch((error) => {

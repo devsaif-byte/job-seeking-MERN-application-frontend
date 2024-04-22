@@ -19,11 +19,8 @@ import Application from "./components/applications/Application.jsx";
 import PostJob from "./components/jobs/PostJob.jsx";
 import MyJobs from "./components/jobs/MyJobs.jsx";
 function App() {
-	const { isAuthorized, setIsAuthorized, setUser, user } =
-		useContext(DataContext);
-
+	const { isAuthorized, setIsAuthorized, setUser } = useContext(DataContext);
 	console.log("Authorized?:", isAuthorized);
-	console.log(user);
 	useEffect(() => {
 		const fetchUser = async () => {
 			try {
