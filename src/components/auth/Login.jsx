@@ -1,5 +1,4 @@
 import {
-	Button,
 	Card,
 	CardBody,
 	CardFooter,
@@ -22,7 +21,7 @@ function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [role, setRole] = useState("");
-	const { isAuthorized, setIsAuthorized } = useContext(DataContext);
+	const { isAuthorized, setIsAuthorized, setUser } = useContext(DataContext);
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
@@ -31,16 +30,18 @@ function Login() {
 				"https://job-bucket-server.onrender.com/api/v1/user/login",
 				{ email, password, role },
 				{
-					headers: { "Content-Type": "application/json" },
+					headers: {
+						"Content-Type": "application/json",
+					},
 					withCredentials: true,
 				}
 			);
-			console.log(data);
 			toast.success(data.message);
 			setEmail("");
 			setPassword("");
 			setRole("");
 			setIsAuthorized(true);
+			setUser(data.user);
 		} catch (error) {
 			toast.error(error.response.data.message);
 		}

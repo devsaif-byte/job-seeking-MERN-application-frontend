@@ -26,6 +26,7 @@ function JobDetails() {
 				withCredentials: true,
 			})
 			.then((res) => {
+				console.log(res.data);
 				setJob(res.data.job);
 			})
 			.catch((error) => {

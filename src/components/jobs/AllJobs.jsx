@@ -69,33 +69,31 @@ function AllJobs() {
 				{jobs &&
 					jobs?.map((job) => {
 						return (
-							!job.expired && (
-								<Card
-									key={job._id}
-									className="hover:shadow-md border hover:border-none"
-									shadow="none"
-								>
-									<CardHeader className={`${jobColors[job._id]} text-white`}>
-										<b>{job.title}</b>
-									</CardHeader>
-									<CardBody>
-										<p>Category: {job.category}</p>
-										<p>Country: {job.country}</p>
-										<p>Location: {job.location}</p>
-									</CardBody>
-									<CardFooter>
-										<Button
-											as={Link}
-											to={`/job/${job._id}`}
-											radius="full"
-											variant="shadow"
-											size="sm"
-										>
-											See Details
-										</Button>
-									</CardFooter>
-								</Card>
-							)
+							<Card
+								key={job._id}
+								className="hover:shadow-md border hover:border-none"
+								shadow="none"
+							>
+								<CardHeader className={`${jobColors[job._id]} text-white`}>
+									<b>{job.title}</b>
+								</CardHeader>
+								<CardBody>
+									<p>Category: {job.category}</p>
+									<p>Country: {job.country}</p>
+									<p>Location: {job.location}</p>
+								</CardBody>
+								<CardFooter>
+									<Button
+										as={Link}
+										to={`/job/${job._id}`}
+										radius="full"
+										variant="shadow"
+										size="md"
+									>
+										See Details
+									</Button>
+								</CardFooter>
+							</Card>
 						);
 					})}
 			</div>
